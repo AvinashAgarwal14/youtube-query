@@ -4,8 +4,7 @@
 ```
 1. git clone https://github.com/AvinashAgarwal14/youtube-query.git
 2. cd portfolio-tracker
-3. npm install
-4. npm start
+3. docker-compose up
 ```
 
 ### Endpoints
