@@ -4,8 +4,9 @@
 ```
 1. git clone https://github.com/AvinashAgarwal14/youtube-query.git
 2. cd youtube-query
-3. docker-compose build
-4. docker-compose up
+3. Enter Youtube Data v3 API key in /util/config.js
+4. docker-compose build
+5. docker-compose up
 ```
 
 ### Endpoints
