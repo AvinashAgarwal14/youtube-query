@@ -6,16 +6,20 @@ const updateDB = require('./util/updateDB');
 const mongoose = require('mongoose');
 const Videos = mongoose.model('videos');
 
+// Setup mongoose connection
 mongoose.connect(keys.mongoURI, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true
 });
 
+// Populate db for the first time
 updateDB();
+// Update Databse every hour
 setTimeout(updateDB, 60*60*1000);
 
-app.get('/fetch', async (req, res) => {
+// Returns paginated response sorted in descending order of published datetime
+app.get('/videos', async (req, res) => {
     const page = parseInt(req.query.page);
     const limit = parseInt(req.query.limit);
     const skipIndex = (page - 1) * limit;
@@ -31,7 +35,8 @@ app.get('/fetch', async (req, res) => {
     }
 });
 
-app.get('/search', async (req, res) => {
+// Returns response based on search query (text and description)
+app.get('/videos/search', async (req, res) => {
     const query = req.query.q;
     try {
         const results = await Videos.find({
@@ -45,6 +50,7 @@ app.get('/search', async (req, res) => {
     }
 });
 
+// Run application on port 3000
 app.listen(3000, () =>{
     console.log("Server started at port 3000");
 })

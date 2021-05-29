@@ -9,7 +9,7 @@
 
 ### Endpoints
 
-1. GET `/fetch`
+1. GET `/videos`
 
    ```
    Response:  
@@ -26,7 +26,7 @@
    Failure: 500  
    ```
 
-2. GET `/search?q=&page=&limit=`
+2. GET `/videos/search?q=&page=&limit=`
 
    ```
    Request Query Parameters:
