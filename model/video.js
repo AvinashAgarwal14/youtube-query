@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-// Schema defination for Portfolio
+// Schema defination for Videos
 const videoSchema = new Schema({
     title: String,
     description: String,

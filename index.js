@@ -1,8 +1,8 @@
 const express = require('express');
-const axios = require('axios');
-const keys = require('./config');
+const keys = require('./util/config');
 const app = express();
 require('./model/video');
+const updateDB = require('./util/updateDB');
 const mongoose = require('mongoose');
 const Videos = mongoose.model('videos');
 
@@ -12,33 +12,8 @@ mongoose.connect(keys.mongoURI, {
     useUnifiedTopology: true
 });
 
-app.get('/', async (req, res)=>{
-    try {
-        let result = await axios.get(`https://www.googleapis.com/youtube/v3/search/?key=${keys.apiKey}&maxResults=50&type=video&order=date&part=snippet&q=cricket`)
-        let {totalResults, resultsPerPage} = result.data.pageInfo;
-        let numOfPages = Math.min(100/resultsPerPage, totalResults/resultsPerPage);
-        let videos = [];
-        let pageToken = '';
-        while(numOfPages-- && pageToken!=undefined){
-            result = await axios.get(`https://www.googleapis.com/youtube/v3/search/?key=${keys.apiKey}&maxResults=50&type=video&order=date&part=snippet&q=cricket&pageToken=${pageToken}`)
-            pageToken = result.data.nextPageToken;
-            
-            videos.push(
-                ...result.data.items.map(it=>{
-                    const {title, description, thumbnails, channelTitle} = it.snippet;
-                    return {
-                        title, description, thumbnails, channelTitle
-                    }
-                })
-            )
-        }
-        await Videos.insertMany(videos);
-        res.status(200).send({data: videos});
-    } catch(err) {
-        console.log(err);
-        res.status(500).send({message: err.message});
-    }
-});
+updateDB();
+setTimeout(updateDB, 60*60*1000);
 
 app.get('/fetch', async (req, res) => {
     const page = parseInt(req.query.page);
@@ -64,7 +39,7 @@ app.get('/search', async (req, res) => {
                 $search: query
             }
         });
-        res.status(200).send({data: results[0].description});
+        res.status(200).send({data: results});
     } catch (err) {
         res.status(500).send({ message: err.message });
     }
