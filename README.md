@@ -4,13 +4,14 @@
 ```
 1. git clone https://github.com/AvinashAgarwal14/youtube-query.git
 2. cd youtube-query
-3. docker-compose build
-4. docker-compose up
+3. Enter Youtube Data v3 API key in /util/config.js
+4. docker-compose up --build
+5. Visit localhost:3000 for dashboard and localhost:500/{Endpoints} for APIs
 ```
 
 ### Endpoints
 
-1. GET `/videos`
+1. GET `/api/videos`
 
    ```
    Response:  
@@ -19,15 +20,15 @@
      "timestamp" : Date,  
      "title": String,  
      "description": String,   
-     "publishedAtDatetime": Number,  
+     "publishTime": Date,  
      "thumbnails": Object,
-     "ChannelTitle": String,
+     "channelTitle": String,
    }]
 
    Failure: 500  
    ```
 
-2. GET `/videos/search?q=&page=&limit=`
+2. GET `/api/videos/search?q=&page=&limit=`
 
    ```
    Request Query Parameters:
@@ -41,9 +42,9 @@
      "timestamp" : Date,  
      "title": String,  
      "description": String,   
-     "publishedAtDatetime": Number,  
+     "publishTime": Date,  
      "thumbnails": Object,
-     "ChannelTitle": String,
+     "channelTitle": String,
    }]
 
    Failure: 500  

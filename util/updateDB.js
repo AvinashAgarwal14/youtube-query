@@ -10,9 +10,9 @@ const updateDB = async () => {
         let result = await axios.get(`https://www.googleapis.com/youtube/v3/search/?key=${keys.apiKey}&maxResults=50&type=video&order=date&part=snippet&q=cricket`)
         videos.push(
             ...result.data.items.map(it=>{
-                const {title, description, thumbnails, channelTitle} = it.snippet;
+                const {title, description, thumbnails, channelTitle, publishTime} = it.snippet;
                 return {
-                    title, description, thumbnails, channelTitle
+                    title, description, thumbnails, channelTitle, publishTime
                 }
             })
         )
@@ -24,9 +24,9 @@ const updateDB = async () => {
             pageToken = result.data.nextPageToken;
             videos.push(
                 ...result.data.items.map(it=>{
-                    const {title, description, thumbnails, channelTitle} = it.snippet;
+                    const {title, description, thumbnails, channelTitle, publishTime} = it.snippet;
                     return {
-                        title, description, thumbnails, channelTitle
+                        title, description, thumbnails, channelTitle, publishTime
                     }
                 })
             )

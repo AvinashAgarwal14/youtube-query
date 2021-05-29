@@ -16,7 +16,7 @@ mongoose.connect(keys.mongoURI, {
 // Populate db for the first time
 updateDB();
 // Update Databse every hour
-setTimeout(updateDB, 60*60*1000);
+setInterval(updateDB, 60*60*1000);
 
 // Returns paginated response sorted in descending order of published datetime
 app.get('/api/videos', async (req, res) => {
@@ -25,7 +25,7 @@ app.get('/api/videos', async (req, res) => {
     const skipIndex = (page - 1) * limit;
     try {
         const results = await Videos.find()
-        .sort({ publishedDatetime: 0 })
+        .sort({ publishTime: 0 })
         .limit(limit)
         .skip(skipIndex)
         .exec();
@@ -50,7 +50,7 @@ app.get('/api/videos/search', async (req, res) => {
     }
 });
 
-// Run application on port 3000
+// Run application on port 5000
 app.listen(5000, () =>{
     console.log("Server started at port 5000");
 })
