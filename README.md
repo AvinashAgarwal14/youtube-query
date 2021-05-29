@@ -3,7 +3,7 @@
 ### Running the Application Locally
 ```
 1. git clone https://github.com/AvinashAgarwal14/youtube-query.git
-2. cd portfolio-tracker
+2. cd youtube-query
 3. docker-compose build
 4. docker-compose up
 ```
