@@ -4,7 +4,8 @@
 ```
 1. git clone https://github.com/AvinashAgarwal14/youtube-query.git
 2. cd portfolio-tracker
-3. docker-compose up
+3. docker-compose build
+4. docker-compose up
 ```
 
 ### Endpoints
