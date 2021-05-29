@@ -25,7 +25,7 @@ app.get('/videos', async (req, res) => {
     const skipIndex = (page - 1) * limit;
     try {
         const results = await Videos.find()
-        .sort({ publishedDatetime: 0 })
+        .sort({ publishTime: 0 })
         .limit(limit)
         .skip(skipIndex)
         .exec();

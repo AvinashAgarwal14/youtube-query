@@ -20,9 +20,9 @@
      "timestamp" : Date,  
      "title": String,  
      "description": String,   
-     "publishedAtDatetime": Number,  
+     "publishTime": Date,  
      "thumbnails": Object,
-     "ChannelTitle": String,
+     "channelTitle": String,
    }]
 
    Failure: 500  
@@ -42,9 +42,9 @@
      "timestamp" : Date,  
      "title": String,  
      "description": String,   
-     "publishedAtDatetime": Number,  
+     "publishTime": Date,  
      "thumbnails": Object,
-     "ChannelTitle": String,
+     "channelTitle": String,
    }]
 
    Failure: 500  
