@@ -19,7 +19,7 @@ updateDB();
 setTimeout(updateDB, 60*60*1000);
 
 // Returns paginated response sorted in descending order of published datetime
-app.get('/videos', async (req, res) => {
+app.get('/api/videos', async (req, res) => {
     const page = parseInt(req.query.page);
     const limit = parseInt(req.query.limit);
     const skipIndex = (page - 1) * limit;
@@ -36,7 +36,7 @@ app.get('/videos', async (req, res) => {
 });
 
 // Returns response based on search query (text and description)
-app.get('/videos/search', async (req, res) => {
+app.get('/api/videos/search', async (req, res) => {
     const query = req.query.q;
     try {
         const results = await Videos.find({
@@ -51,6 +51,6 @@ app.get('/videos/search', async (req, res) => {
 });
 
 // Run application on port 3000
-app.listen(3000, () =>{
-    console.log("Server started at port 3000");
+app.listen(5000, () =>{
+    console.log("Server started at port 5000");
 })

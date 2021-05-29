@@ -7,7 +7,7 @@ const videoSchema = new Schema({
     description: String,
     publishedAtDatetime: Date,
     thumbnails: Schema.Types.Mixed,
-    ChannelTitle: String,
+    channelTitle: String,
     timestamp: {type: Date, default: Date.now()}
 });
 
